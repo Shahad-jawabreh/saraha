@@ -5,8 +5,10 @@ import userRouter from './src/modules/user/user.router.js'
 const appInit = (app,express)=>{
     connection()
     app.use(express.json());
+    app.get('/',(req,res)=>{return res.json({massege : "welcom!"})})
     app.use('/user',userRouter)
     app.use('/massege',massegeRouter)
     app.use('/auth',authRouter)
+    app.use('*',(req,res)=>{return res.json({massege : "not found page!"})})
 }
 export default appInit
