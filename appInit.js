@@ -12,5 +12,11 @@ const appInit = (app,express)=>{
     app.use('/massege',massegeRouter)
     app.use('/auth',authRouter)
     app.use('*',(req,res)=>{return res.json({massege : "not found page!"})})
+    app.use((err,req,res,next)=>{
+       if(err){
+        console.log(err)
+        return res.json({massege: err.message})
+       }
+    })
 }
 export default appInit
